@@ -9,7 +9,17 @@
  *     }
  * }
  */
-public class Solution {
+class Solution6 {
+
+  public class ListNode {
+         int val;
+         ListNode next;
+         ListNode(int x) {
+             val = x;
+             next = null;
+         }
+     }
+
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
       int sizeA = 0;
       int sizeB = 0;
