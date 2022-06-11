@@ -1,4 +1,4 @@
-8
+10
 
 
 The trick to this problem is realizing that since we're dealing with subsequences and only 2 possible characters, the answer cannot possible be larger than 2. In fact, the answer will always be 2 unless S is already a palindrome, in which case the answer is 1, or S is an empty string, in which case the answer is 0.
@@ -11,3 +11,29 @@ So in this situation I could, for example, create a subsequence of every single 
               ^ ^   ^ ^ ^                  // Characters for the first subsequence
    sub = "    a a   a a a" = "a a a a a"   // Palindromic, so it can be removed
      S = "b b     b      " = "b b b"       // Remaining string is now palindromic and can be removed
+
+
+
+
+     int target = -x;
+for (int num : nums) target += num;
+
+if (target == 0) return nums.length;  // since all elements are positive, we have to take all of them
+
+Map<Integer, Integer> map = new HashMap<>();
+map.put(0, -1);
+int sum = 0;
+int res = Integer.MIN_VALUE;
+
+for (int i = 0; i < nums.length; ++i) {
+
+	sum += nums[i];
+	if (map.containsKey(sum - target)) {
+		res = Math.max(res, i - map.get(sum - target));
+	}
+
+    // no need to check containsKey since sum is unique
+	map.put(sum, i);
+}
+
+return res == Integer.MIN_VALUE ? -1 : nums.length - res;
